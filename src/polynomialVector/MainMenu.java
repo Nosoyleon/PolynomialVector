@@ -29,6 +29,7 @@ public class MainMenu {
 		System.out.println("(3) Remover un termino");
 		System.out.println("(4) Evaluar con respecto a X");
 		System.out.println("(5) Sumar polinomio");
+		System.out.println("(6) Multiplicar polinomio");
 		System.out.println("(0) Para Salir. :'(");
 
 		int userInput = scanner.nextInt();

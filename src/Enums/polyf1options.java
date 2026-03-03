@@ -1,7 +1,7 @@
 package Enums;
 
 public enum polyf1options {
-	EXIT(0), REPLACE_POLY(1), INSERT_MONO(2), REMOVE_MONO(3), SOLVE(4), SUMPOLY(5);
+	EXIT(0), REPLACE_POLY(1), INSERT_MONO(2), REMOVE_MONO(3), SOLVE(4), SUMPOLY(5), MULTIPLY(6);
 
 	private final int value;
 

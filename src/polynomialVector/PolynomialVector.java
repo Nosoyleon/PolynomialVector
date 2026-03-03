@@ -89,50 +89,68 @@ public class PolynomialVector {
 					scanner.nextLine();
 					break;
 				}
-				
-				case SOLVE: { 
+
+				case SOLVE: {
 					System.out.println("Ingrese el valor de X: ");
 					int value = scanner.nextInt();
 					scanner.nextLine();
-					
+
 					int result = F1.solvePolynomial(value);
 					System.out.println();
 					System.out.println("Total: " + result);
 					scanner.nextLine();
 					break;
-					
+
 				}
-				
+
 				case SUMPOLY: {
-					
+
 					PolynomialF1 polyToSum = addNewPolynomialF1(scanner);
-					
+
 					int degreeCurrent = F1.getVector()[0];
 					int degreeToSum = polyToSum.getVector()[0];
-					
+
 					int maxExp = degreeCurrent > degreeToSum ? degreeCurrent : degreeToSum;
-					
+
 					PolynomialF1 totalPoly = new PolynomialF1(maxExp);
-					
+
 					totalPoly.sumPolynomial(F1, polyToSum);
-					
-					
-					
+
 					System.out.println();
 					System.out.println("Polynomio Sumado: " + totalPoly.rebuildToString());
 					F1 = totalPoly;
 					scanner.nextLine();
-					
+
 					break;
 				}
-				
+
+				case MULTIPLY: {
+
+					PolynomialF1 polyToMultiply = addNewPolynomialF1(scanner);
+
+					int degreeCurrent = F1.getVector()[0];
+					int degreeToMultiply = polyToMultiply.getVector()[0];
+
+					int newDegree = degreeCurrent + degreeToMultiply;
+
+					PolynomialF1 totalPoly = new PolynomialF1(newDegree);
+
+					totalPoly.muliplyPolinomial(polyToMultiply, F1);
+
+					System.out.println();
+					System.out.println("Multiplication terminada: " + totalPoly.rebuildToString());
+					F1 = totalPoly;
+					scanner.nextLine();
+
+					break;
+				}
 
 				default:
 					System.out.println("Opción incorrecta -.-");
 				}
 			}
 
-		} while (userInput !=0);
+		} while (userInput != 0);
 
 		scanner.close();
 	}
@@ -143,8 +161,9 @@ public class PolynomialVector {
 		String strinPoly = scanner.nextLine().toLowerCase();
 
 		String[] unsorted = Utils.getPoliFromString(strinPoly);
+
 		String[] sorted = Utils.SortByExpDesc(unsorted);
-		
+
 		System.out.println();
 		System.out.println("Sorted: ");
 		System.out.println(String.join(",", sorted));

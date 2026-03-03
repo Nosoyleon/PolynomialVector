@@ -75,6 +75,8 @@ public class Utils {
 	public static String[] SortByExpDesc(String unSorted[]) {
 
 		String[] sorted = unSorted;
+		
+		if(unSorted.length <= 2) return sorted;
 
 		for (int i = 1; i < sorted.length; i = i + 2) {
 			if (sorted[i] != null) {

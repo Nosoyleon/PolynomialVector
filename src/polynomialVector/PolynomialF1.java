@@ -141,7 +141,7 @@ public class PolynomialF1 {
 
 		int j = zeroCount + 1;
 
-		while (j <= this.DU) {
+		while (j <= this.DU && zeroCount > 0) {
 			this.vector[j - zeroCount] = this.vector[j];
 			this.vector[j] = 0;
 			j++;
@@ -188,11 +188,41 @@ public class PolynomialF1 {
 			} else {
 				this.vector[posC] = polyB.getVector()[posB];
 				posB++;
-
 				posC++;
 			}
 
 		}
+		adjustVector();
+	}
+
+	public void muliplyPolinomial(PolynomialF1 polyA, PolynomialF1 polyB) {
+
+		for (int posA = 1; posA <= polyA.getDU(); posA++) {
+			int[] auxVector = new int[this.getVector().length];
+			auxVector[0] = this.getVector()[0];
+
+			for (int posB = 1; posB <= polyB.getDU(); posB++) {
+				int coheA = polyA.getVector()[posA];
+				int expoA = polyA.getDU() - posA;
+
+				int coheB = polyB.getVector()[posB];
+				int expoB = polyB.getDU() - posB;
+
+				int coheTotal = coheA * coheB;
+				int expoTotal = expoA + expoB;
+
+				int newPos = this.getDU() - expoTotal;
+
+				auxVector[newPos] = coheTotal;
+
+			}
+
+			PolynomialF1 auxPoly = new PolynomialF1(this.getVector()[0]);
+			auxPoly.setVector(auxVector);
+
+			this.sumPolynomial(this, auxPoly);
+		}
+
 	}
 
 }
