@@ -1,5 +1,7 @@
 package polynomialVector;
 
+import java.util.Arrays;
+
 public class Utils {
 
 	/**
@@ -10,7 +12,6 @@ public class Utils {
 		char charVector[] = userInput.toCharArray();
 		int intVector[] = new int[charVector.length < 2 ? 2 : charVector.length];
 
-		System.out.println("Initial Char polynomial: ");
 		for (int i = 0; i < charVector.length; i++) {
 			System.out.print("[" + charVector[i] + "],");
 		}
@@ -30,7 +31,8 @@ public class Utils {
 					intVector[posStringVector] = Integer.parseInt(currentString);
 					intVector[posStringVector + 1] = 0; // Exponente
 				} else if (charVector[i + 1] == '+' || charVector[i + 1] == '-') { // X^0
-					intVector[posStringVector] = Integer.parseInt(currentString);;
+					intVector[posStringVector] = Integer.parseInt(currentString);
+					;
 					intVector[posStringVector + 1] = 0;
 					currentString = "";
 					posStringVector += 2;
@@ -49,7 +51,8 @@ public class Utils {
 
 				// X^1
 				if (lastCharacter) {
-					intVector[posStringVector] = Integer.parseInt(currentString);;
+					intVector[posStringVector] = Integer.parseInt(currentString);
+					;
 					intVector[posStringVector + 1] = 1;
 					posStringVector += 2;
 				} else if (charVector[i + 1] != '^') {
@@ -74,33 +77,30 @@ public class Utils {
 
 	public static int[] SortByExpDesc(int unSorted[]) {
 
-		int[] sorted = unSorted;
-		
-		if(unSorted.length <= 2) return sorted;
+		int[] sorted = Arrays.copyOf(unSorted, unSorted.length);
+
+		if (unSorted.length <= 2)
+			return sorted;
 
 		for (int i = 1; i < sorted.length; i = i + 2) {
-			if (sorted[i] != 0) {
 
-				for (int j = 1; j < sorted.length; j = j + 2) {
+			for (int j = i + 2; j < sorted.length; j = j + 2) {
 
-					if (sorted[j] != 0 && sorted[j + 2] != 0) {
+				if (sorted[i] < sorted[j]) {
 
-						if (sorted[j] < sorted[j + 2]) {
+					int tempCohe = sorted[i - 1];
+					int tempExp = sorted[i];
 
-							int tempCohe = sorted[j - 1];
-							int tempExp = sorted[j];
+					sorted[i - 1] = sorted[j - 1];
+					sorted[i] = sorted[j];
 
-							sorted[j - 1] = sorted[j + 1];
-							sorted[j] = sorted[j + 2];
+					sorted[j - 1] = tempCohe;
+					sorted[j] = tempExp;
 
-							sorted[j + 1] = tempCohe;
-							sorted[j + 2] = tempExp;
-
-						}
-
-					}
 				}
+
 			}
+
 		}
 
 		return sorted;

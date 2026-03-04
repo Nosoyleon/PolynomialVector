@@ -27,13 +27,15 @@ public class PolynomialF1 {
 	}
 
 	public void vectorToPolyF1(int[] orderedVector) {
+		
 
-		for (int i = 1; i < orderedVector.length; i = i + 2) {
-			if (orderedVector[i] != 0) {
+		for (int i = 1; i <= orderedVector.length; i = i + 2) {
+			if(orderedVector[i -1] != 0) {
 				int pos = this.DU - orderedVector[i];
-
-				this.vector[pos] = orderedVector[i - 1];
+				this.vector[pos] = orderedVector[i-1];
+				
 			}
+
 		}
 	}
 
@@ -115,7 +117,7 @@ public class PolynomialF1 {
 		return poly;
 	}
 
-	public String showinF1() {
+	public String showForm() {
 		String F1String = "";
 
 		for (int i = 0; i < this.vector.length; i++) {

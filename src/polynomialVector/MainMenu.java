@@ -2,6 +2,8 @@ package polynomialVector;
 
 import java.util.Scanner;
 
+import Enums.Forms;
+
 public class MainMenu {
 
 	static String DIVIDER = "----------------------";
@@ -26,16 +28,16 @@ public class MainMenu {
 		return Enums.mainMenu.fromInt(userInput);
 	}
 
-	public Enums.polyf1options PolynomialF1Options(String StringPoly, String StringF1, int DU) {
+	public Enums.polyMenuOptions PolynomialOptions(String StringPoly, String StringForm, Forms Form) {
 		System.out.println();
 		System.out.println(DIVIDER);
 
 		if (!StringPoly.isBlank()) {
-			System.out.println("Que quieres hacer con el Polinomio?");
+			System.out.println("Que quieres hacer con el Polinomio "+ Form +"?");
 			System.out.println(DIVIDER);
 			System.out.println("Polimonio Actual: " + StringPoly);
-			System.out.println("Polimonio Forma1: " + StringF1);
-			System.out.println("Datos útiles: " + DU);
+			System.out.println("Forma: " + Form);
+			System.out.println("Polimonio: " + StringForm);
 			System.out.println(DIVIDER);
 			System.out.println("(1) Reemplazar polinomio");
 			System.out.println("(2) Ingresar un termino");
@@ -48,10 +50,10 @@ public class MainMenu {
 			int userInput = scanner.nextInt();
 			scanner.nextLine();
 
-			return Enums.polyf1options.fromInt(userInput);
+			return Enums.polyMenuOptions.fromInt(userInput);
 		} else {
 			System.out.println("No hay polinomio incial");
-			return Enums.polyf1options.REPLACE_POLY;
+			return Enums.polyMenuOptions.REPLACE_POLY;
 		}
 
 	}

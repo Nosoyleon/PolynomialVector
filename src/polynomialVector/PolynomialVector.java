@@ -21,7 +21,7 @@ public class PolynomialVector {
 
 		Scanner scanner = new Scanner(System.in);
 		PolynomialF1 F1 = new PolynomialF1(0);
-		PolynomialF1 F2 = new PolynomialF1(0);
+		PolynomialF2 F2 = new PolynomialF2(0);
 		PolynomialF1 F3 = new PolynomialF1(0);
 
 		Enums.mainMenu mainMenuResponse = mainMenu.EXIT;
@@ -32,9 +32,11 @@ public class PolynomialVector {
 
 			MainMenu menu = new MainMenu(scanner);
 			ActionsPolynomialF1 actionsF1 = new ActionsPolynomialF1(scanner, F1);
+			ActionsPolynomialF2 actionsF2 = new ActionsPolynomialF2(scanner, F2);
 
+			
 			try {
-				mainMenuResponse = menu.initialMenu(F1.rebuildToString(), F2.rebuildToString(), F3.rebuildToString());
+				mainMenuResponse = menu.initialMenu(F1.rebuildToString(), F2.rebuildToString(), F1.rebuildToString());
 
 				switch (mainMenuResponse) {
 				case EXIT: {
@@ -47,7 +49,7 @@ public class PolynomialVector {
 				}
 				
 				case MAIN_POLYNOMIAL_F2: {
-					
+					F2 = actionsF2.mainPolyF2();
 					break;
 				}
 				default:

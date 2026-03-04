@@ -2,14 +2,14 @@ package polynomialVector;
 
 import java.util.Scanner;
 
-import Enums.polyf1options;
+import Enums.Forms;
+import Enums.polyMenuOptions;
 
 public class ActionsPolynomialF1 {
-	
+
 	private Scanner scanner;
 	private PolynomialF1 F1;
-	
-	
+
 	public ActionsPolynomialF1(Scanner scanner, PolynomialF1 F1) {
 		this.scanner = scanner;
 		this.F1 = F1;
@@ -18,12 +18,12 @@ public class ActionsPolynomialF1 {
 	public PolynomialF1 mainPolyF1() {
 
 		MainMenu menu = new MainMenu(scanner);
-		Enums.polyf1options polyF1MenuResponse = polyf1options.EXIT;
+		Enums.polyMenuOptions polyMenuResponse = polyMenuOptions.EXIT;
 
 		do {
-			polyF1MenuResponse = menu.PolynomialF1Options(F1.rebuildToString(), F1.showinF1(), F1.getDU());
+			polyMenuResponse = menu.PolynomialOptions(F1.rebuildToString(), F1.showForm(), Forms.FORMA_1);
 
-			switch (polyF1MenuResponse) {
+			switch (polyMenuResponse) {
 			case EXIT: {
 				break;
 			}
@@ -109,7 +109,7 @@ public class ActionsPolynomialF1 {
 				System.out.println("Opción incorrecta -.-");
 			}
 
-		} while (polyF1MenuResponse != polyf1options.EXIT);
+		} while (polyMenuResponse != polyMenuOptions.EXIT);
 
 		return F1;
 	}
@@ -129,8 +129,8 @@ public class ActionsPolynomialF1 {
 		PolynomialF1 F1 = new PolynomialF1(sorted[1]);
 		F1.vectorToPolyF1(sorted);
 
-		System.out.println("El DU del polinormio es: " + F1.getDU());
-		System.out.println("Polinomio Forma 1: " + F1.showinF1());
+		System.out.println("El DU del polinomio es: " + F1.getDU());
+		System.out.println("Polinomio Forma 1: " + F1.showForm());
 
 		return F1;
 
