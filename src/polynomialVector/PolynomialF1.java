@@ -44,7 +44,7 @@ public class PolynomialF1 {
 
 		if (exp > this.vector[0]) {
 			System.out.println();
-			System.out.println("El termino no puede tener un grado mayor a: " + this.vector[0]);
+			System.out.println("Termino con grado mayor al polinomio: " + this.vector[0]);
 			String currentF1String = this.rebuildToString();
 			String newPrefix = cohe > 0 ? "+" : "";
 			currentF1String += newPrefix + monomialString;

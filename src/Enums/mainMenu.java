@@ -1,7 +1,7 @@
 package Enums;
 
 public enum mainMenu {
-	EXIT(0), INSERT_POLYNOMIAL(1);
+	EXIT(0), MAIN_POLYNOMIAL_F1(1), MAIN_POLYNOMIAL_F2(2), MAIN_POLYNOMIAL_F3(3), INVALID(999);
 
 	private final int value;
 
