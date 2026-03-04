@@ -48,19 +48,19 @@ public class ActionsPolynomialF2 {
 				scanner.nextLine();
 				break;
 			}
-//
-//			case SOLVE: {
-//				System.out.println("Ingrese el valor de X: ");
-//				int value = scanner.nextInt();
-//				scanner.nextLine();
-//
-//				int result = F1.solvePolynomial(value);
-//				System.out.println();
-//				System.out.println("Total: " + result);
-//				scanner.nextLine();
-//				break;
-//
-//			}
+
+			case SOLVE: {
+				System.out.println("Ingrese el valor de X: ");
+				int value = scanner.nextInt();
+				scanner.nextLine();
+
+				int result = F2.solvePolynomial(value);
+				System.out.println();
+				System.out.println("Total: " + result);
+				scanner.nextLine();
+				break;
+
+			}
 //
 //			case SUMPOLY: {
 //

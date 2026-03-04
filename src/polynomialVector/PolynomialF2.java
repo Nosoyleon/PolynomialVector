@@ -158,6 +158,21 @@ public class PolynomialF2 {
 		}
 
 	}
+	
+	public int solvePolynomial(int value) {
+
+		int result = 0;
+
+		for (int i = 1; i <= this.DU; i = i + 2) {
+			int cohe = this.vector[i];
+			int exp = this.vector[i+ 1];
+			int monoresult = cohe * (int) Math.pow(value, exp);
+			result += monoresult;
+
+		}
+
+		return result;
+	}
 
 	private void adjustVector() {
 		int countTerms = 0;
