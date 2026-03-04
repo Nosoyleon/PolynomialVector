@@ -45,6 +45,11 @@ public class PolynomialVector {
 					F1 = actionsF1.mainPolyF1();
 					break;
 				}
+				
+				case MAIN_POLYNOMIAL_F2: {
+					
+					break;
+				}
 				default:
 					System.out.println("Opción incorrecta -.-");
 				}

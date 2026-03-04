@@ -5,10 +5,10 @@ public class Utils {
 	/**
 	 * @return
 	 */
-	public static String[] getPoliFromString(String userInput) {
+	public static int[] getPoliFromString(String userInput) {
 
 		char charVector[] = userInput.toCharArray();
-		String stringVector[] = new String[charVector.length < 2 ? 2 : charVector.length];
+		int intVector[] = new int[charVector.length < 2 ? 2 : charVector.length];
 
 		System.out.println("Initial Char polynomial: ");
 		for (int i = 0; i < charVector.length; i++) {
@@ -27,11 +27,11 @@ public class Utils {
 				currentString += charVector[i];
 
 				if (lastCharacter) {
-					stringVector[posStringVector] = currentString;
-					stringVector[posStringVector + 1] = "0"; // Exponente
+					intVector[posStringVector] = Integer.parseInt(currentString);
+					intVector[posStringVector + 1] = 0; // Exponente
 				} else if (charVector[i + 1] == '+' || charVector[i + 1] == '-') { // X^0
-					stringVector[posStringVector] = currentString;
-					stringVector[posStringVector + 1] = "0";
+					intVector[posStringVector] = Integer.parseInt(currentString);;
+					intVector[posStringVector + 1] = 0;
 					currentString = "";
 					posStringVector += 2;
 
@@ -40,8 +40,8 @@ public class Utils {
 			} else if (charVector[i] == '-') {
 				currentString += charVector[i];
 			} else if (charVector[i] == '^') {
-				stringVector[posStringVector] = currentString;
-				stringVector[posStringVector] = Character.toString(charVector[i + 1]);
+				intVector[posStringVector] = Integer.parseInt(currentString);
+				intVector[posStringVector] = Integer.parseInt(Character.toString(charVector[i + 1]));
 				currentString = "";
 				posStringVector += 2;
 				i++;
@@ -49,19 +49,19 @@ public class Utils {
 
 				// X^1
 				if (lastCharacter) {
-					stringVector[posStringVector] = currentString;
-					stringVector[posStringVector + 1] = "1";
+					intVector[posStringVector] = Integer.parseInt(currentString);;
+					intVector[posStringVector + 1] = 1;
 					posStringVector += 2;
 				} else if (charVector[i + 1] != '^') {
-					stringVector[posStringVector] = !currentString.isBlank() ? currentString : "1";
+					intVector[posStringVector] = !currentString.isBlank() ? Integer.parseInt(currentString) : 1;
 					currentString = "";
-					stringVector[posStringVector + 1] = "1";
+					intVector[posStringVector + 1] = 1;
 					posStringVector += 2;
 				} else {
 					// X^n
-					stringVector[posStringVector] = currentString;
+					intVector[posStringVector] = Integer.parseInt(currentString);
 					currentString = "";
-					stringVector[posStringVector + 1] = Character.toString(charVector[i + 2]);
+					intVector[posStringVector + 1] = Integer.parseInt(Character.toString(charVector[i + 2]));
 					posStringVector += 2;
 					i += 2;
 				}
@@ -69,26 +69,26 @@ public class Utils {
 
 		}
 
-		return stringVector;
+		return intVector;
 	}
 
-	public static String[] SortByExpDesc(String unSorted[]) {
+	public static int[] SortByExpDesc(int unSorted[]) {
 
-		String[] sorted = unSorted;
+		int[] sorted = unSorted;
 		
 		if(unSorted.length <= 2) return sorted;
 
 		for (int i = 1; i < sorted.length; i = i + 2) {
-			if (sorted[i] != null) {
+			if (sorted[i] != 0) {
 
 				for (int j = 1; j < sorted.length; j = j + 2) {
 
-					if (sorted[j] != null && sorted[j + 2] != null) {
+					if (sorted[j] != 0 && sorted[j + 2] != 0) {
 
-						if (Integer.parseInt(sorted[j]) < Integer.parseInt(sorted[j + 2])) {
+						if (sorted[j] < sorted[j + 2]) {
 
-							String tempCohe = sorted[j - 1];
-							String tempExp = sorted[j];
+							int tempCohe = sorted[j - 1];
+							int tempExp = sorted[j];
 
 							sorted[j - 1] = sorted[j + 1];
 							sorted[j] = sorted[j + 2];

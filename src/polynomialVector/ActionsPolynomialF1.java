@@ -119,16 +119,15 @@ public class ActionsPolynomialF1 {
 		System.out.println("Ingrese el polinomio: ");
 		String strinPoly = scanner.nextLine().toLowerCase();
 
-		String[] unsorted = Utils.getPoliFromString(strinPoly);
+		int[] unsorted = Utils.getPoliFromString(strinPoly);
 
-		String[] sorted = Utils.SortByExpDesc(unsorted);
+		int[] sorted = Utils.SortByExpDesc(unsorted);
 
 		System.out.println();
-		System.out.println("Sorted: ");
-		System.out.println(String.join(",", sorted));
+		System.out.println("-- Sorted --");
 
-		PolynomialF1 F1 = new PolynomialF1(Integer.parseInt(sorted[1]));
-		F1.StringToPolyF1(sorted);
+		PolynomialF1 F1 = new PolynomialF1(sorted[1]);
+		F1.vectorToPolyF1(sorted);
 
 		System.out.println("El DU del polinormio es: " + F1.getDU());
 		System.out.println("Polinomio Forma 1: " + F1.showinF1());

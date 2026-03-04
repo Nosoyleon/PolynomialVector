@@ -26,21 +26,21 @@ public class PolynomialF1 {
 		this.vector = vector;
 	}
 
-	public void StringToPolyF1(String[] orderedVector) {
+	public void vectorToPolyF1(int[] orderedVector) {
 
 		for (int i = 1; i < orderedVector.length; i = i + 2) {
-			if (orderedVector[i] != null) {
-				int pos = this.DU - Integer.parseInt(orderedVector[i]);
+			if (orderedVector[i] != 0) {
+				int pos = this.DU - orderedVector[i];
 
-				this.vector[pos] = Integer.parseInt(orderedVector[i - 1]);
+				this.vector[pos] = orderedVector[i - 1];
 			}
 		}
 	}
 
 	public void insert(String monomialString) {
-		String[] monomial = Utils.getPoliFromString(monomialString);
-		int cohe = Integer.parseInt(monomial[0]);
-		int exp = Integer.parseInt(monomial[1]);
+		int[] monomial = Utils.getPoliFromString(monomialString);
+		int cohe = monomial[0];
+		int exp = monomial[1];
 
 		if (exp > this.vector[0]) {
 			System.out.println();
@@ -51,14 +51,14 @@ public class PolynomialF1 {
 
 			System.out.println("Construyendo nuevo polinomio: " + currentF1String);
 
-			String[] unsorted = Utils.getPoliFromString(currentF1String);
-			String[] sorted = Utils.SortByExpDesc(unsorted);
+			int[] unsorted = Utils.getPoliFromString(currentF1String);
+			int[] sorted = Utils.SortByExpDesc(unsorted);
 
-			this.DU = Integer.parseInt(sorted[1]) + 1;
+			this.DU = sorted[1] + 1;
 			this.vector = new int[this.DU + 1];
-			this.vector[0] = Integer.parseInt(sorted[1]);
+			this.vector[0] = sorted[1];
 
-			this.StringToPolyF1(sorted);
+			this.vectorToPolyF1(sorted);
 			System.out.println();
 			System.out.println("Nuevo polinomio construido.");
 
@@ -72,9 +72,9 @@ public class PolynomialF1 {
 	}
 
 	public void remove(String monomialString) {
-		String[] monomial = Utils.getPoliFromString(monomialString);
-		int cohe = Integer.parseInt(monomial[0]);
-		int exp = Integer.parseInt(monomial[1]);
+		int[] monomial = Utils.getPoliFromString(monomialString);
+		int cohe = monomial[0];
+		int exp = monomial[1];
 
 		if (exp > this.vector[0]) {
 			System.out.println();
