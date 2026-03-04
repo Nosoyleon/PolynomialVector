@@ -108,7 +108,7 @@ public class PolynomialF2 {
 					found = true;
 				}
 			}
-			if(!found) {
+			if (!found) {
 				String currentF2String = this.rebuildToString();
 				String newPrefix = cohe > 0 ? "+" : "";
 				currentF2String += newPrefix + monomialString;
@@ -125,5 +125,57 @@ public class PolynomialF2 {
 			System.out.println("Ternimo Agregado: " + monomialString);
 		}
 
+	}
+
+	public void remove(String monomialString) {
+		int[] monomial = Utils.getPoliFromString(monomialString);
+		int cohe = monomial[0];
+		int exp = monomial[1];
+
+		if (exp > this.vector[2]) {
+			System.out.println();
+			System.out.println("No hay un termino con el grado: " + exp);
+		} else {
+			boolean found = false;
+			for (int i = 2; i <= this.DU; i = i + 2) {
+				if (this.vector[i] == exp && this.vector[i - 1] == cohe) {
+
+					this.vector[i] = 0;
+					this.vector[i - 1] = 0;
+
+					System.out.println();
+					System.out.println("Ternimo Eliminado: " + monomialString);
+					System.out.println("Ajustando...");
+					adjustVector();
+					found = true;
+				}
+			}
+			if (!found) {
+				System.out.println("No se encontró el termino: " + monomialString);
+				System.out.println();
+			}
+
+		}
+
+	}
+
+	private void adjustVector() {
+		int countTerms = 0;
+
+		int j = 1;
+		int[] newVector = new int[this.vector.length];
+
+		for (int i = 1; i < this.DU; i = i + 2) {
+			if (this.vector[i] != 0) {
+				newVector[j] = this.vector[i];
+				newVector[j + 1] = this.vector[i + 1];
+				countTerms += 1;
+				j=j+2;
+			}
+		}
+
+		newVector[0] = countTerms;
+		this.DU = countTerms * 2;
+		this.vector = Arrays.copyOfRange(newVector, 0, this.DU + 1);
 	}
 }

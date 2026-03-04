@@ -36,7 +36,7 @@ public class PolynomialVector {
 
 			
 			try {
-				mainMenuResponse = menu.initialMenu(F1.rebuildToString(), F2.rebuildToString(), F1.rebuildToString());
+				mainMenuResponse = menu.initialMenu(F1.rebuildToString(), F2.rebuildToString(), "F3");
 
 				switch (mainMenuResponse) {
 				case EXIT: {

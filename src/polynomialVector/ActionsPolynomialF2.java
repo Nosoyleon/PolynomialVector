@@ -40,14 +40,14 @@ public class ActionsPolynomialF2 {
 				scanner.nextLine();
 				break;
 			}
-//
-//			case REMOVE_MONO: { // Remove Monomial
-//				System.out.println("Ingrese el termino a remover: ");
-//				String monomialToRemove = scanner.nextLine();
-//				F2.remove(monomialToRemove);
-//				scanner.nextLine();
-//				break;
-//			}
+
+			case REMOVE_MONO: { // Remove Monomial
+				System.out.println("Ingrese el termino a remover: ");
+				String monomialToRemove = scanner.nextLine();
+				F2.remove(monomialToRemove);
+				scanner.nextLine();
+				break;
+			}
 //
 //			case SOLVE: {
 //				System.out.println("Ingrese el valor de X: ");
