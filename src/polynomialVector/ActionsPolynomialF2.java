@@ -61,27 +61,27 @@ public class ActionsPolynomialF2 {
 				break;
 
 			}
-//
-//			case SUMPOLY: {
-//
-//				PolynomialF1 polyToSum = craeteNewpolynomialF2(scanner);
-//
-//				int degreeCurrent = F1.getVector()[0];
-//				int degreeToSum = polyToSum.getVector()[0];
-//
-//				int maxExp = degreeCurrent > degreeToSum ? degreeCurrent : degreeToSum;
-//
-//				PolynomialF1 totalPoly = new PolynomialF1(maxExp);
-//
-//				totalPoly.sumPolynomial(F1, polyToSum);
-//
-//				System.out.println();
-//				System.out.println("Polynomio Sumado: " + totalPoly.rebuildToString());
-//				F1 = totalPoly;
-//				scanner.nextLine();
-//
-//				break;
-//			}
+
+			case SUMPOLY: {
+
+				PolynomialF2 polyToSum = craeteNewpolynomialF2(scanner);
+
+				int degreeCurrent = F2.getVector()[2];
+				int degreeToSum = polyToSum.getVector()[2];
+
+				int maxExp = degreeCurrent > degreeToSum ? degreeCurrent : degreeToSum;
+
+				PolynomialF2 totalPoly = new PolynomialF2(maxExp * 2);
+
+				totalPoly.sumPolynomial(F2, polyToSum);
+
+				System.out.println();
+				System.out.println("Polynomio Sumado: " + totalPoly.rebuildToString());
+				F2 = totalPoly;
+				scanner.nextLine();
+
+				break;
+			}
 //
 //			case MULTIPLY: {
 //

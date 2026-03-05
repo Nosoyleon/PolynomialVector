@@ -158,20 +158,67 @@ public class PolynomialF2 {
 		}
 
 	}
-	
+
 	public int solvePolynomial(int value) {
 
 		int result = 0;
 
 		for (int i = 1; i <= this.DU; i = i + 2) {
 			int cohe = this.vector[i];
-			int exp = this.vector[i+ 1];
+			int exp = this.vector[i + 1];
 			int monoresult = cohe * (int) Math.pow(value, exp);
 			result += monoresult;
 
 		}
 
 		return result;
+	}
+
+	public void sumPolynomial(PolynomialF2 polyA, PolynomialF2 polyB) {
+
+		int posA = 2;
+		int posB = 2;
+		int posC = 2;
+
+		while (posB <= polyB.getDU() || posA <= polyA.getDU()) {
+
+			if (posA > polyA.getDU()) {
+				this.vector[posC - 1] = polyB.getVector()[posB - 1];
+				this.vector[posC] = polyB.getVector()[posB];
+				posB = posB + 2;
+				posC = posC + 2;
+			} else if (posB > polyB.getDU()) {
+				this.vector[posC - 1] = polyA.getVector()[posA - 1];
+				this.vector[posC] = polyA.getVector()[posA];
+				posA = posA + 2;
+				posC = posC + 2;
+			} else {
+
+				int expA = polyA.getVector()[posA];
+				int expB = polyB.getVector()[posB];
+
+				if (expA == expB) {
+					this.vector[posC - 1] = polyA.getVector()[posA - 1] + polyB.getVector()[posB - 1];
+					this.vector[posC] = polyA.getVector()[posA];
+					posA = posA + 2;
+					posB = posB + 2;
+					posC = posC + 2;
+				} else if (expA > expB) {
+					this.vector[posC - 1] = polyA.getVector()[posA - 1];
+					this.vector[posC] = polyA.getVector()[posA];
+					posA = posA + 2;
+					posC = posC + 2;
+				} else {
+					this.vector[posC - 1] = polyB.getVector()[posB - 1];
+					this.vector[posC] = polyB.getVector()[posB];
+					posB = posB + 2;
+					posC = posC + 2;
+				}
+
+			}
+
+		}
+		adjustVector();
 	}
 
 	private void adjustVector() {
@@ -185,7 +232,7 @@ public class PolynomialF2 {
 				newVector[j] = this.vector[i];
 				newVector[j + 1] = this.vector[i + 1];
 				countTerms += 1;
-				j=j+2;
+				j = j + 2;
 			}
 		}
 
