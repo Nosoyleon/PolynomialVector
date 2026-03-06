@@ -82,32 +82,32 @@ public class ActionsPolynomialF2 {
 
 				break;
 			}
-//
-//			case MULTIPLY: {
-//
-//				PolynomialF1 polyToMultiply = craeteNewpolynomialF2(scanner);
-//
-//				int degreeCurrent = F1.getVector()[0];
-//				int degreeToMultiply = polyToMultiply.getVector()[0];
-//
-//				int newDegree = degreeCurrent + degreeToMultiply;
-//
-//				PolynomialF1 totalPoly = new PolynomialF1(newDegree);
-//
-//				totalPoly.muliplyPolinomial(polyToMultiply, F1);
-//
-//				System.out.println();
-//				System.out.println("Multiplication terminada: " + totalPoly.rebuildToString());
-//				F1 = totalPoly;
-//				scanner.nextLine();
-//
-//				break;
-//			}
-//
+
+			case MULTIPLY: {
+
+				PolynomialF2 polyToMultiply = craeteNewpolynomialF2(scanner);
+
+				int degreeCurrent = F2.getVector()[2];
+				int degreeToMultiply = polyToMultiply.getVector()[2];
+
+				int newDegree = degreeCurrent + degreeToMultiply;
+
+				PolynomialF2 totalPoly = new PolynomialF2(newDegree*2);
+
+				totalPoly.muliplyPolinomial(polyToMultiply, F2, newDegree);
+
+				System.out.println();
+				System.out.println("Multiplication terminada: " + totalPoly.rebuildToString());
+				F2 = totalPoly;
+				scanner.nextLine();
+
+				break;
+			}
+
 			default:
 				System.out.println("Opción incorrecta -.-");
 			}
-//
+
 		} while (polyMenuResponse != polyMenuOptions.EXIT);
 
 		return F2;
@@ -129,7 +129,6 @@ public class ActionsPolynomialF2 {
 		F2.vectorToPolyF2(sorted);
 
 		System.out.println("El DU del polinomio es: " + F2.getDU());
-//		System.out.println("Polinomio Forma 2: " + F2.showForm());
 
 		return F2;
 

@@ -1,5 +1,6 @@
 package polynomialVector;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class PolynomialF2 {
@@ -196,6 +197,8 @@ public class PolynomialF2 {
 
 				int expA = polyA.getVector()[posA];
 				int expB = polyB.getVector()[posB];
+				int coheA = polyA.getVector()[posA - 1];
+				int coheB = polyB.getVector()[posB - 1];
 
 				if (expA == expB) {
 					this.vector[posC - 1] = polyA.getVector()[posA - 1] + polyB.getVector()[posB - 1];
@@ -208,17 +211,57 @@ public class PolynomialF2 {
 					this.vector[posC] = polyA.getVector()[posA];
 					posA = posA + 2;
 					posC = posC + 2;
+					if (coheB == 0) {
+						posB = posB + 2;
+					}
 				} else {
 					this.vector[posC - 1] = polyB.getVector()[posB - 1];
 					this.vector[posC] = polyB.getVector()[posB];
 					posB = posB + 2;
 					posC = posC + 2;
+					if (coheA == 0) {
+						posA = posA + 2;
+					}
 				}
 
 			}
 
 		}
 		adjustVector();
+	}
+
+	public void muliplyPolinomial(PolynomialF2 polyA, PolynomialF2 polyB, int newDegree) {
+
+		for (int posA = 2; posA <= polyA.getDU(); posA = posA + 2) {
+			this.vector = Arrays.copyOf(this.vector, (newDegree * 2) + 1);
+			int[] auxVector = new int[this.getVector().length];
+			auxVector[0] = this.getVector()[0];
+			int posAux = 2;
+
+			for (int posB = 2; posB <= polyB.getDU(); posB = posB + 2) {
+				int coheA = polyA.getVector()[posA - 1];
+				int expoA = polyA.getVector()[posA];
+
+				int coheB = polyB.getVector()[posB - 1];
+				int expoB = polyB.getVector()[posB];
+
+				int coheTotal = coheA * coheB;
+				int expoTotal = expoA + expoB;
+
+				auxVector[posAux - 1] = coheTotal;
+				auxVector[posAux] = expoTotal;
+				posAux = posAux + 2;
+			}
+
+			PolynomialF2 auxPoly = new PolynomialF2(newDegree * 2);
+			auxPoly.setVector(Arrays.copyOf(this.getVector(), (newDegree * 2) + 1));
+
+			PolynomialF2 auxPoly2 = new PolynomialF2(newDegree * 2);
+			auxPoly2.setVector(Arrays.copyOf(auxVector, (newDegree * 2) + 1));
+
+			this.sumPolynomial(auxPoly, auxPoly2);
+		}
+
 	}
 
 	private void adjustVector() {
@@ -239,5 +282,22 @@ public class PolynomialF2 {
 		newVector[0] = countTerms;
 		this.DU = countTerms * 2;
 		this.vector = Arrays.copyOfRange(newVector, 0, this.DU + 1);
+	}
+
+	private void resize(int maxExp, int[] vector) {
+		int j = 1;
+		int[] newVector = new int[maxExp * 2];
+
+		for (int i = 2; i <= vector.length; i = i + 2) {
+
+			newVector[j - 1] = vector[i - 1];
+			newVector[j] = vector[i];
+
+			j = j + 2;
+
+		}
+		this.DU = (maxExp * 2) - 1;
+		this.vector = Arrays.copyOfRange(newVector, 0, this.DU + 1);
+
 	}
 }
